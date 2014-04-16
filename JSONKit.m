@@ -2597,7 +2597,7 @@ static int jk_encode_add_atom_to_buffer(JKEncodeState *encodeState, void *object
   // XXX XXX XXX XXX
 
 
-  BOOL   workAroundMacOSXABIBreakingBug = (JK_EXPECT_F(((NSUInteger)object) & 0x1))     ? YES  : NO;
+  BOOL   workAroundMacOSXABIBreakingBug = NO; //(JK_EXPECT_F(((NSUInteger)object) & 0x1))     ? YES  : NO; // We only use this on iOS so let's get rid of this warning in Xcode 5.x
   void  *objectISA                      = (JK_EXPECT_F(workAroundMacOSXABIBreakingBug)) ? NULL : *((void **)objectPtr);
   if(JK_EXPECT_F(workAroundMacOSXABIBreakingBug)) { goto slowClassLookup; }
 
